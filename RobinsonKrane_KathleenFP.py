@@ -1,16 +1,18 @@
 #
 
 
+import tkinter as tk
+
 
 
 ROWS = 4
-COLS = 3
+COLS = 4
 
 ROW = 0
 COL = 1
 
-p = [ [1,2,3],[4,5,0],[7,8,9],[10,11,6]]  #12 square
-q =[ [0,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,1]]  #16 square
+p1 = [ [1,2,3],[4,5,0],[7,8,9],[10,11,6]]  #12 square
+p2 =[ [1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,0]]  #16 square
 zero = [-1,-1]
 touch = [-1,-1]
 
@@ -75,11 +77,8 @@ def findTouch(p):
     return ([r,c])
 
 
-print(q)
-zero = findZero(q)
-touch = findTouch(q)
 
-if True:
+def handlePuzzle(p,zero,touch):
     
     if zero[ROW] == touch[ROW]:     #touch is in same row as blank
         if zero[COL] < touch[COL]:       #touch is right of blank
@@ -106,10 +105,32 @@ if True:
     else:
         print ("Stay col")
 
+q=p2
 print (q)
     
+but = []
+window = tk.Tk()
 
+###
+for ii in range (2):
+    zero = findZero(q)
+    touch = findTouch(q)
 
-
-
-
+    handlePuzzle(q,zero,touch)
+###
+    kk = -1
+    for row in range (ROWS):
+        for col in range (COLS):
+            kk += 1
+            tt = str(q[row][col])
+            if q[row][col] == 0:
+                bb = tk.Button(text=tt,bg='black',fg='black')
+            else:
+                bb = tk.Button(text=tt,bg='yellow',fg='blue')
+        
+            but.append(bb)
+            bb.grid(row=row,column=col)
+    print ("almost there")
+        
+print (q)
+print ("The End")
